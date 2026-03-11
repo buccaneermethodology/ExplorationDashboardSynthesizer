@@ -1,0 +1,2 @@
+# ExplorationDashboardSynthesizer
+Transforms unstructured information into a structured Exploration Dashboard
