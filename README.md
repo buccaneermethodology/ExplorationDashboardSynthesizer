@@ -9,7 +9,7 @@
 - Align shared understanding
 - Organize future work
 
-The principles of synthesizing emphasizes faithful structuring over creativity, and treats the dashboard as a cognitive coordination artifact, not a narrative summary.
+The synthesis principles emphasize faithful structuring over creativity, and treat the dashboard as a cognitive coordination artifact, not a narrative summary.
 
 ## ✨ Features
 
@@ -30,7 +30,7 @@ The principles of synthesizing emphasizes faithful structuring over creativity, 
 ### Installation
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/exploration-dashboard-synthesizer.git
+git clone https://github.com/buccaneermethodology/ExplorationDashboardSynthesizer.git
 ```
 
 2. Import skill.json into your OpenClaw instance (or copy the prompt template manually).
@@ -51,7 +51,7 @@ If you are not using OpenClaw, you can paste the prompt template (from skill.jso
 
 For a detailed explanation of the core concepts (Big Ideas, Sessions, Session Types) and the structuring process, please see reference.md.
 
-For detailed information about Dashboard method, please refer to:[BM Dashboard](https://mp.weixin.qq.com/s/9XrmJUYoRppsLkl4JVnkBQ).
+For detailed information about the Dashboard method, see [BM Dashboard](https://mp.weixin.qq.com/s/9XrmJUYoRppsLkl4JVnkBQ).
 
 ### 🧪 Example
 
@@ -102,10 +102,8 @@ This project is licensed under the MIT License – see the LICENSE file for deta
 ### 📬 Contact
 
 Maintainer: Tai Xiaomei buccaneermethodology@gmail.com
-GitHub: @buccanneermethodology
+GitHub: @buccaneermethodology
 
 ---
 
 Happy exploring! 🧭
-
-```

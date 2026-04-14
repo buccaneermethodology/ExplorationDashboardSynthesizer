@@ -4,7 +4,7 @@
   "description": "Transforms unstructured information into a structured Exploration Dashboard to help teams align understanding, track progress, and prioritize future work.",
   "author": "Tai Xiaomei <buccaneermethodology@gmail.com>",
   "license": "MIT",
-  "repository": "https://github.com/buccaneermethodology/exploration-dashboard-synthesizer",
+  "repository": "https://github.com/buccaneermethodology/ExplorationDashboardSynthesizer",
   "inputs": [
     {
       "name": "input_text",
