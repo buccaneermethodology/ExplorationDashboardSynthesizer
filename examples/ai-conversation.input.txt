@@ -1,0 +1,5 @@
+Conversation fragments:
+- We keep losing context when switching between AI sessions.
+- The project needs a dashboard that separates long-running directions from bounded work sessions.
+- Decisions should not be buried in task notes because they affect multiple future steps.
+- The next useful experiment is to let the AI update the dashboard after each non-trivial task.

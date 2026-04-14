@@ -1,0 +1,4 @@
+Meeting notes:
+- Alice: We tried using knowledge graphs for fault diagnosis, but accuracy is only 70%.
+- Bob: I think we need higher quality knowledge, maybe extract rules from expert experience.
+- Carol: Let us form a task force and start a pilot next month, target accuracy above 85%.
