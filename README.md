@@ -51,7 +51,7 @@ If you are not using OpenClaw, you can paste the prompt template (from skill.jso
 
 For a detailed explanation of the core concepts (Big Ideas, Sessions, Session Types) and the structuring process, please see reference.md.
 
-For detailed information about the Dashboard method, see [BM Dashboard](https://mp.weixin.qq.com/s/9XrmJUYoRppsLkl4JVnkBQ).
+For detailed information about the Dashboard method, see [BM Dashboard](Docs/BM%20Dashboard.md). Original article: [WeChat](https://mp.weixin.qq.com/s/9XrmJUYoRppsLkl4JVnkBQ).
 
 ### 🧪 Example
 
