@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exploration Dashboard Synthesizer"
+  short_description: "Synthesize BM exploration dashboards"
+  default_prompt: "Use $exploration-dashboard-synthesizer to turn these notes into an Exploration Dashboard."

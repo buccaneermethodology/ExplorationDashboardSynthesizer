@@ -14,6 +14,9 @@ REQUIRED_FILES = [
     "prompt.md",
     "docs/core-concepts.md",
     "docs/bm-dashboard.md",
+    "skill/exploration-dashboard-synthesizer/SKILL.md",
+    "skill/exploration-dashboard-synthesizer/agents/openai.yaml",
+    "skill/exploration-dashboard-synthesizer/references/core-concepts.md",
     "examples/meeting-notes.input.txt",
     "examples/meeting-notes.dashboard.md",
     "examples/ai-conversation.input.txt",
@@ -68,6 +71,39 @@ def validate_required_files(errors: list[str]) -> None:
             fail(f"required file missing: {rel}", errors)
 
 
+def validate_codex_skill(errors: list[str]) -> None:
+    skill_dir = ROOT / "skill/exploration-dashboard-synthesizer"
+    skill_md = skill_dir / "SKILL.md"
+    if not skill_md.exists():
+        return
+
+    text = skill_md.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        fail("Codex SKILL.md must start with YAML frontmatter", errors)
+    if "name: exploration-dashboard-synthesizer" not in text:
+        fail("Codex SKILL.md name should be exploration-dashboard-synthesizer", errors)
+    if "description:" not in text:
+        fail("Codex SKILL.md missing description", errors)
+    if "TODO" in text:
+        fail("Codex SKILL.md should not contain TODO placeholders", errors)
+    if "references/core-concepts.md" not in text:
+        fail("Codex SKILL.md should reference references/core-concepts.md", errors)
+
+    openai_yaml = skill_dir / "agents/openai.yaml"
+    if openai_yaml.exists():
+        ui_text = openai_yaml.read_text(encoding="utf-8")
+        if "display_name:" not in ui_text:
+            fail("Codex openai.yaml missing display_name", errors)
+        if "Use $exploration-dashboard-synthesizer" not in ui_text:
+            fail("Codex openai.yaml default_prompt should mention $exploration-dashboard-synthesizer", errors)
+
+    canonical_reference = ROOT / "docs/core-concepts.md"
+    installed_reference = skill_dir / "references/core-concepts.md"
+    if canonical_reference.exists() and installed_reference.exists():
+        if canonical_reference.read_text(encoding="utf-8") != installed_reference.read_text(encoding="utf-8"):
+            fail("Codex core-concepts reference is not synchronized with docs/core-concepts.md", errors)
+
+
 def validate_markdown_links(errors: list[str]) -> None:
     pattern = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
     for md_path in ROOT.rglob("*.md"):
@@ -93,6 +129,7 @@ def main() -> int:
     validate_required_files(errors)
     if (ROOT / "skill.json").exists() and (ROOT / "prompt.md").exists():
         validate_skill(errors)
+    validate_codex_skill(errors)
     validate_markdown_links(errors)
 
     if errors:

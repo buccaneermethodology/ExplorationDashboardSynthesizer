@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/buccaneermethodology/ExplorationDashboardSynthesizer)](https://github.com/buccaneermethodology/ExplorationDashboardSynthesizer/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Exploration Dashboard Synthesizer** is an OpenClaw skill that transforms unstructured exploration material into a structured **Exploration Dashboard**.
+**Exploration Dashboard Synthesizer** is an OpenClaw and Codex-compatible skill that transforms unstructured exploration material into a structured **Exploration Dashboard**.
 
 It is designed for notes, conversations, brainstorming fragments, research discussions, and AI collaboration traces where the goal is still emerging. The skill turns raw material into Big Ideas, Sessions, key points, next suggestions, assumptions, and unresolved questions.
 
@@ -59,7 +59,19 @@ git clone https://github.com/buccaneermethodology/ExplorationDashboardSynthesize
 cd ExplorationDashboardSynthesizer
 ```
 
-### 2. Use with OpenClaw
+### 2. Install as a Codex skill
+
+Install the Codex-compatible skill path directly from GitHub:
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo buccaneermethodology/ExplorationDashboardSynthesizer \
+  --path skill/exploration-dashboard-synthesizer
+```
+
+Restart Codex after installation, then invoke it with `$exploration-dashboard-synthesizer`.
+
+### 3. Use with OpenClaw
 
 Import [skill.json](skill.json) into your OpenClaw environment.
 
@@ -71,11 +83,11 @@ openclaw run exploration-dashboard-synthesizer \
   --output dashboard.md
 ```
 
-### 3. Use as a direct prompt
+### 4. Use as a direct prompt
 
 If you are not using OpenClaw, copy the prompt from [prompt.md](prompt.md), paste it into a capable LLM, and replace `{{input_text}}` with your material.
 
-### 4. Review the output
+### 5. Review the output
 
 Treat the generated Dashboard as a working artifact. Review unsupported assumptions, rename Big Ideas if needed, and adjust Session boundaries before using it for coordination.
 
@@ -119,6 +131,7 @@ Expected output shape:
 | File | Purpose |
 | --- | --- |
 | [skill.json](skill.json) | OpenClaw skill package metadata and prompt template. |
+| [skill/exploration-dashboard-synthesizer/SKILL.md](skill/exploration-dashboard-synthesizer/SKILL.md) | Codex-compatible skill entry point for installation from GitHub. |
 | [prompt.md](prompt.md) | Human-readable source for the prompt template. |
 | [docs/core-concepts.md](docs/core-concepts.md) | Concept definitions and output structure. |
 | [docs/bm-dashboard.md](docs/bm-dashboard.md) | BM Dashboard methodology article. |
@@ -150,6 +163,7 @@ The validator checks:
 - required repository files
 - `skill.json` structure
 - `prompt.md` and `skill.json` prompt synchronization
+- Codex-compatible `SKILL.md` path and metadata
 - local Markdown links
 
 If you edit [prompt.md](prompt.md), sync it into [skill.json](skill.json):
@@ -157,6 +171,12 @@ If you edit [prompt.md](prompt.md), sync it into [skill.json](skill.json):
 ```bash
 python3 scripts/sync_prompt.py
 python3 scripts/validate_repo.py
+```
+
+If you have Codex's skill creator validator available, validate the installable skill path too:
+
+```bash
+python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skill/exploration-dashboard-synthesizer
 ```
 
 ## References
