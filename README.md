@@ -18,6 +18,7 @@ The synthesis principle is simple: preserve structure faithfully. The Dashboard 
 - Separates supported insights from assumptions and unresolved questions.
 - Produces a Markdown Dashboard that can be reviewed, edited, and evolved.
 - Keeps unsupported ideas out of conclusions and places ambiguous material into Proposed Sessions or Unresolved Questions.
+- Keeps Session Type separate from governed lifecycle Status when the output is projected into an existing repository Dashboard.
 
 ## When To Use It
 
@@ -150,6 +151,22 @@ For ongoing project-state maintenance after a Dashboard exists, use [dashboard-g
 | `ExplorationDashboardSynthesizer` | Synthesizes the initial Dashboard from raw material. |
 | `dashboard-governance-skill` | Maintains Big Ideas, Sessions, Decisions, status, and emergent next steps during ongoing work. |
 
+### Governed Status Projection
+
+Standalone synthesis does not require a Status column. If you ask the skill to write into an existing governed repository Dashboard, it first discovers and reads that project's Dashboard governance contract; the repository contract, not this portable skill, is the Status authority.
+
+- A new candidate Session uses lifecycle Status `todo`.
+- Use `decision-needed` only when a real choice is pending, and reference the governing Decision.
+- `Proposed` remains a Session Type; it is not the lifecycle Status `proposed`.
+- Never use `active`, `proposed`, `partial`, or `bounded-*` as lifecycle Status values.
+- If no contract is discoverable, retain the standalone output and do not claim governed conformance.
+
+No private repository path is required. Contract discovery is conditional on the target repository's capabilities.
+
+## v1.2.0 Upgrade Notes
+
+Version `1.2.0` adds portable governed-Status projection rules across the direct prompt, OpenClaw package, Codex Skill, references, documentation, and examples. Existing standalone output remains compatible because it still omits Status unless a target format requests it. Integrations that project into a governed Dashboard should provide or expose the target repository's governance contract and should expect new candidates to use `todo` rather than treating `Proposed` as a lifecycle Status.
+
 ## Validate
 
 Run the repository validator:
@@ -163,6 +180,7 @@ The validator checks:
 - required repository files
 - `skill.json` structure
 - `prompt.md` and `skill.json` prompt synchronization
+- package version `1.2.0` and governed-Status markers across prompt, Codex Skill, references, README, and examples
 - Codex-compatible `SKILL.md` path and metadata
 - local Markdown links
 

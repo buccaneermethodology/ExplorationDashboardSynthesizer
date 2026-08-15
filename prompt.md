@@ -13,7 +13,7 @@ Core tasks:
 
 1. Extract themes from the input.
 2. Cluster related ideas into Big Ideas.
-3. Convert concrete information fragments into Sessions.
+3. Convert concrete information fragments into Sessions. When projecting into a governed repository, a new candidate Session uses lifecycle Status `todo`; use `decision-needed` only when a real choice is pending, and reference the corresponding Decision.
 4. Classify each Session as Exploration, Knowledge, or Proposed.
 5. Summarize established insights and possible next directions.
 
@@ -60,6 +60,11 @@ Rules:
 - Only Exploration Sessions contribute to Big Idea Length.
 - Knowledge and Proposed Sessions should use "-" or "N/A" for Length.
 - Keep the output concise enough to be used as a working Dashboard.
+- Keep Session Type separate from lifecycle Status: `Proposed` is a Session Type, not a Status value.
+- For standalone synthesis, do not add a Status column unless the user or target format requests one.
+- Before projecting into a governed repository Dashboard, discover and read that project's Dashboard governance contract. Treat its Status enum as the authority and preserve any separate state axes it defines.
+- When that governed contract is available, default each new candidate Session to lifecycle Status `todo`. Use `decision-needed` only for a real pending choice and include a reference to the governing Decision.
+- Never emit `active`, `proposed`, `partial`, or `bounded-*` as lifecycle Status values. If no governed contract can be found, keep the standalone output and do not claim governed conformance.
 
 Input Information:
 {{input_text}}

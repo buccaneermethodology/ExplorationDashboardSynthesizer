@@ -15,7 +15,7 @@ Use `$dashboard-governance` instead when a repository already has a Dashboard an
 
 1. Identify the input scope: meeting notes, brainstorming fragments, docs, article text, AI conversation history, or mixed material.
 2. Extract major themes and cluster them into Big Ideas. Use multiple Big Ideas when directions are meaningfully different.
-3. Convert concrete fragments into Sessions under the relevant Big Idea.
+3. Convert concrete fragments into Sessions under the relevant Big Idea. Set a new candidate to lifecycle Status `todo` only when projecting into a governed repository; use `decision-needed` only for a real pending choice and reference its Decision.
 4. Classify each Session as `Exploration`, `Knowledge`, or `Proposed`.
 5. Summarize supported insights under Key Points and future options under Next Suggestions.
 6. Preserve uncertainty with Assumptions and Unresolved Questions instead of inventing conclusions.
@@ -61,6 +61,11 @@ Only `Exploration` Sessions contribute to Big Idea Length. Use `Unknown` when a 
 - Do not force bilingual labels; use them only when the input or user context makes them useful.
 - Do not merge unrelated directions into a single Big Idea for neatness.
 - Use stable, readable Session IDs such as `B1-E1`, `B1-K1`, and `B1-P1`.
+- Keep Session Type separate from lifecycle Status: `Proposed` is a Session Type, not a Status value.
+- Keep standalone synthesis portable and omit a Status column unless the user or target format requests one.
+- Before projecting into a governed repository Dashboard, discover and read that project's Dashboard governance contract. Use its Status enum as authority and preserve separate state axes.
+- For a governed projection, give each new candidate lifecycle Status `todo`. Use `decision-needed` only when a real choice is pending and include a reference to the governing Decision.
+- Never emit `active`, `proposed`, `partial`, or `bounded-*` as lifecycle Status values. If the repository has no discoverable governance contract, retain the standalone output and do not claim governed conformance.
 
 ## References
 

@@ -25,3 +25,7 @@
 ### Unresolved Questions
 - What fields should be mandatory for each Dashboard row?
 - What quality gate should decide whether AI-generated Dashboard updates are acceptable?
+
+### Governed Projection Note
+
+This standalone example intentionally omits a Status column. If it is projected into a governed repository whose Dashboard contract permits `todo`, `B1-P1` keeps Session Type `Proposed` and receives lifecycle Status `todo`. It uses `decision-needed` only if a real choice is pending and then references the governing Decision; `active`, `proposed`, `partial`, and `bounded-*` are not lifecycle Status values.

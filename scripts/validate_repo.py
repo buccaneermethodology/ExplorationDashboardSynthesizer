@@ -33,6 +33,46 @@ REQUIRED_SKILL_FIELDS = [
     "outputs",
     "prompt_template",
 ]
+EXPECTED_VERSION = "1.2.0"
+STATUS_MARKERS = {
+    "prompt.md": [
+        "lifecycle Status `todo`",
+        "`decision-needed`",
+        "Dashboard governance contract",
+        "`Proposed` is a Session Type, not a Status value",
+        "`active`, `proposed`, `partial`, or `bounded-*`",
+    ],
+    "skill/exploration-dashboard-synthesizer/SKILL.md": [
+        "lifecycle Status `todo`",
+        "`decision-needed`",
+        "Dashboard governance contract",
+        "`Proposed` is a Session Type, not a Status value",
+        "`active`, `proposed`, `partial`, or `bounded-*`",
+    ],
+    "docs/core-concepts.md": [
+        "Governed Repository Projection",
+        "lifecycle Status `todo`",
+        "`decision-needed`",
+        "`active`, `proposed`, `partial`, or `bounded-*`",
+    ],
+    "skill/exploration-dashboard-synthesizer/references/core-concepts.md": [
+        "Governed Repository Projection",
+        "lifecycle Status `todo`",
+        "`decision-needed`",
+        "`active`, `proposed`, `partial`, or `bounded-*`",
+    ],
+    "README.md": [
+        "v1.2.0 Upgrade Notes",
+        "lifecycle Status `todo`",
+        "`decision-needed`",
+        "No private repository path is required",
+    ],
+    "examples/ai-conversation.dashboard.md": [
+        "Session Type `Proposed`",
+        "lifecycle Status `todo`",
+        "`decision-needed`",
+    ],
+}
 
 
 def fail(message: str, errors: list[str]) -> None:
@@ -53,6 +93,8 @@ def validate_skill(errors: list[str]) -> None:
 
     if skill.get("name") != "exploration-dashboard-synthesizer":
         fail("skill.json name should be exploration-dashboard-synthesizer", errors)
+    if skill.get("version") != EXPECTED_VERSION:
+        fail(f"skill.json version should be {EXPECTED_VERSION}", errors)
     if skill.get("license") != "MIT":
         fail("skill.json license should be MIT", errors)
     if not isinstance(skill.get("inputs"), list) or not skill.get("inputs"):
@@ -104,6 +146,31 @@ def validate_codex_skill(errors: list[str]) -> None:
             fail("Codex core-concepts reference is not synchronized with docs/core-concepts.md", errors)
 
 
+def validate_governed_status_projection(errors: list[str]) -> None:
+    for rel, markers in STATUS_MARKERS.items():
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                fail(f"{rel} missing governed status marker: {marker}", errors)
+
+    portability_paths = [
+        ROOT / "prompt.md",
+        ROOT / "README.md",
+        ROOT / "docs/core-concepts.md",
+        ROOT / "skill/exploration-dashboard-synthesizer/SKILL.md",
+        ROOT / "skill/exploration-dashboard-synthesizer/references/core-concepts.md",
+    ]
+    for path in portability_paths:
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if "/Users/" in text or "semx-kb/" in text:
+            fail(f"{path.relative_to(ROOT)} contains a private repository path", errors)
+
+
 def validate_markdown_links(errors: list[str]) -> None:
     pattern = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
     for md_path in ROOT.rglob("*.md"):
@@ -130,6 +197,7 @@ def main() -> int:
     if (ROOT / "skill.json").exists() and (ROOT / "prompt.md").exists():
         validate_skill(errors)
     validate_codex_skill(errors)
+    validate_governed_status_projection(errors)
     validate_markdown_links(errors)
 
     if errors:

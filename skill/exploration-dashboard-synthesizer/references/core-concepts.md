@@ -36,6 +36,20 @@ Each Session must have one of the following types:
 | Knowledge    | An existing knowledge artifact or conceptual module.                        | A methodology, a defined metric, a documented framework                  |
 | Proposed     | A suggested exploration topic that could become a future Session.           | "Design a capability linter", "Build an M1 extractor CLI"                |
 
+Session Type and lifecycle Status answer different questions. `Proposed` says what kind of Session it is; it must not be copied into a lowercase `proposed` Status value.
+
+### 2.4 Governed Repository Projection
+
+The default output is a standalone synthesis and does not require a Status column. When a user asks to project the result into an existing governed repository Dashboard:
+
+1. Discover and read that project's Dashboard governance contract before choosing Status values.
+2. Treat the contract's Status enum as authority and preserve any separate state axes.
+3. Give a new candidate Session lifecycle Status `todo`.
+4. Use `decision-needed` only when a real choice is pending, and reference the governing Decision.
+5. Never use `active`, `proposed`, `partial`, or `bounded-*` as lifecycle Status values.
+
+If no project contract is discoverable, keep the standalone synthesis and state that governed conformance was not established. Do not depend on a private repository path or assume one universal contract location.
+
 ## 3. Dashboard Structure
 
 ### 3.1 Header
