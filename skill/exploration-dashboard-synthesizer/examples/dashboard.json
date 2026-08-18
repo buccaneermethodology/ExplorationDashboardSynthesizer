@@ -1,0 +1,44 @@
+{
+  "schema_version": "exploration_dashboard_v1",
+  "title": "Example Exploration Dashboard",
+  "subtitle": "可筛选的离线派生视图",
+  "generated_on": "2026-08-17",
+  "big_ideas": [
+    {
+      "id": "B1",
+      "topic": "知识质量",
+      "status": "Doing",
+      "coverage": "Unknown",
+      "key_points": ["当前知识图谱的诊断准确率约为 70%。"],
+      "next_suggestions": ["探索专家规则的引入方式。"]
+    },
+    {
+      "id": "B2",
+      "topic": "试点验证",
+      "status": "To do",
+      "key_points": ["需要在真实场景中验证改进后的准确率。"],
+      "next_suggestions": []
+    }
+  ],
+  "stage_plans": [
+    {"id": "SP-001", "topic": "专家规则试点", "status": "Doing", "big_ideas": ["B1"]}
+  ],
+  "sessions": [
+    {
+      "id": "B1-K1", "type": "Knowledge", "topic": "当前诊断基线",
+      "scope": "知识图谱诊断", "purpose": "记录现状与痛点", "length": "-",
+      "key_points": ["准确率约为 70%，且不稳定。"], "big_ideas": ["B1"],
+      "stage_plan": "SP-001", "status": "Done", "priority": "P1",
+      "surface": "current", "phase_tags": ["探索"]
+    },
+    {
+      "id": "B1-P1", "type": "Proposed", "topic": "专家规则试验",
+      "scope": "规则抽取与诊断", "purpose": "验证可行的改进方向", "length": "N/A",
+      "key_points": ["目标准确率高于 85%。"], "big_ideas": ["B1"],
+      "stage_plan": "SP-001", "status": "todo", "priority": "P2",
+      "surface": "current", "phase_tags": ["试点"]
+    }
+  ],
+  "recommendations": [{"title": "建立小规模试点", "detail": "先冻结可观察的验收指标。"}],
+  "source_manifest": [{"path": "examples/meeting-notes.input.txt", "note": "示例输入"}]
+}

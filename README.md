@@ -181,9 +181,9 @@ Standalone synthesis does not require a Status column. If you ask the skill to w
 
 No private repository path is required. Contract discovery is conditional on the target repository's capabilities.
 
-## v1.3.0 Upgrade Notes
+## v1.3.1 Upgrade Notes
 
-Version `1.3.0` keeps the governed-Status projection rules from `1.2.0` and adds the optional `scripts/render_dashboard.py` HTML renderer. It produces a single offline file with the interactive panorama pattern used by the Semx example. Existing Markdown synthesis remains the primary output and is backward compatible.
+Version `1.3.1` keeps the governed-Status projection rules from `1.2.0` and the renderer from `1.3.0`, and bundles the renderer, reference, and example JSON inside the installable Codex Skill directory. Installing only `skill/exploration-dashboard-synthesizer` is now sufficient for complete HTML functionality. Existing Markdown synthesis remains the primary output and is backward compatible.
 
 ## Validate
 
@@ -199,7 +199,7 @@ The validator checks:
 - required repository files
 - `skill.json` structure
 - `prompt.md` and `skill.json` prompt synchronization
-- package version `1.3.0` and governed-Status markers across prompt, Codex Skill, references, README, and examples
+- package version `1.3.1` and governed-Status markers across prompt, Codex Skill, references, README, and examples
 - Codex-compatible `SKILL.md` path and metadata
 - local Markdown links
 

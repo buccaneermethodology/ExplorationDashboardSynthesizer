@@ -33,7 +33,7 @@ REQUIRED_SKILL_FIELDS = [
     "outputs",
     "prompt_template",
 ]
-EXPECTED_VERSION = "1.3.0"
+EXPECTED_VERSION = "1.3.1"
 STATUS_MARKERS = {
     "prompt.md": [
         "lifecycle Status `todo`",
@@ -62,7 +62,7 @@ STATUS_MARKERS = {
         "`active`, `proposed`, `partial`, or `bounded-*`",
     ],
     "README.md": [
-        "v1.3.0 Upgrade Notes",
+        "v1.3.1 Upgrade Notes",
         "lifecycle Status `todo`",
         "`decision-needed`",
         "No private repository path is required",

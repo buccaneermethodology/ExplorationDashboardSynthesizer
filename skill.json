@@ -1,6 +1,6 @@
 {
   "name": "exploration-dashboard-synthesizer",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Transforms unstructured information into a structured Exploration Dashboard with Big Ideas, Sessions, assumptions, unresolved questions, and next suggestions.",
   "author": "Tai Xiaomei <buccaneermethodology@gmail.com>",
   "license": "MIT",
