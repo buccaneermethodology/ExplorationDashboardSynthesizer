@@ -17,6 +17,7 @@ The synthesis principle is simple: preserve structure faithfully. The Dashboard 
 - Classifies Sessions as `Exploration`, `Knowledge`, or `Proposed`.
 - Separates supported insights from assumptions and unresolved questions.
 - Produces a Markdown Dashboard that can be reviewed, edited, and evolved.
+- Optionally renders that Dashboard as a self-contained HTML panorama with interactive views, filters, sorting, pagination, URL state, and a detail drawer.
 - Keeps unsupported ideas out of conclusions and places ambiguous material into Proposed Sessions or Unresolved Questions.
 - Keeps Session Type separate from governed lifecycle Status when the output is projected into an existing repository Dashboard.
 
@@ -92,6 +93,22 @@ If you are not using OpenClaw, copy the prompt from [prompt.md](prompt.md), past
 
 Treat the generated Dashboard as a working artifact. Review unsupported assumptions, rename Big Ideas if needed, and adjust Session boundaries before using it for coordination.
 
+### 6. Render an interactive HTML panorama
+
+The Markdown file remains the primary output. To create a portable, offline HTML projection:
+
+```bash
+python3 scripts/render_dashboard.py examples/meeting-notes.dashboard.md /tmp/exploration-dashboard.html
+```
+
+For richer Big Idea/Stage Plan relationships, statuses, source locators, and phase tags, use the documented JSON shape:
+
+```bash
+python3 scripts/render_dashboard.py examples/dashboard.json /tmp/exploration-dashboard.html
+```
+
+The generated page includes overview, Big Idea, Stage Plan, and Session views; keyword and field filters; sorting; pagination; URL-hash state; and a detail drawer. See [HTML renderer reference](references/html-renderer.md). The page is a derived read model and does not mutate the source Dashboard.
+
 ## Examples
 
 | Input | Expected Dashboard |
@@ -136,7 +153,8 @@ Expected output shape:
 | [prompt.md](prompt.md) | Human-readable source for the prompt template. |
 | [docs/core-concepts.md](docs/core-concepts.md) | Concept definitions and output structure. |
 | [docs/bm-dashboard.md](docs/bm-dashboard.md) | BM Dashboard methodology article. |
-| [examples/](examples/) | Sample inputs and expected Dashboard outputs. |
+| [examples/](examples/) | Sample inputs, expected Dashboard outputs, and a renderer JSON example. |
+| [scripts/render_dashboard.py](scripts/render_dashboard.py) | Generates a self-contained, filterable HTML projection from Markdown or JSON. |
 | [scripts/validate_repo.py](scripts/validate_repo.py) | Repository validation script used by CI. |
 | [scripts/sync_prompt.py](scripts/sync_prompt.py) | Syncs `prompt.md` into `skill.json`. |
 
@@ -163,9 +181,9 @@ Standalone synthesis does not require a Status column. If you ask the skill to w
 
 No private repository path is required. Contract discovery is conditional on the target repository's capabilities.
 
-## v1.2.0 Upgrade Notes
+## v1.3.0 Upgrade Notes
 
-Version `1.2.0` adds portable governed-Status projection rules across the direct prompt, OpenClaw package, Codex Skill, references, documentation, and examples. Existing standalone output remains compatible because it still omits Status unless a target format requests it. Integrations that project into a governed Dashboard should provide or expose the target repository's governance contract and should expect new candidates to use `todo` rather than treating `Proposed` as a lifecycle Status.
+Version `1.3.0` keeps the governed-Status projection rules from `1.2.0` and adds the optional `scripts/render_dashboard.py` HTML renderer. It produces a single offline file with the interactive panorama pattern used by the Semx example. Existing Markdown synthesis remains the primary output and is backward compatible.
 
 ## Validate
 
@@ -173,6 +191,7 @@ Run the repository validator:
 
 ```bash
 python3 scripts/validate_repo.py
+python3 tests/test_renderer.py
 ```
 
 The validator checks:
@@ -180,7 +199,7 @@ The validator checks:
 - required repository files
 - `skill.json` structure
 - `prompt.md` and `skill.json` prompt synchronization
-- package version `1.2.0` and governed-Status markers across prompt, Codex Skill, references, README, and examples
+- package version `1.3.0` and governed-Status markers across prompt, Codex Skill, references, README, and examples
 - Codex-compatible `SKILL.md` path and metadata
 - local Markdown links
 

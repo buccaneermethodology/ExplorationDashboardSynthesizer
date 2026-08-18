@@ -67,6 +67,10 @@ Only `Exploration` Sessions contribute to Big Idea Length. Use `Unknown` when a 
 - For a governed projection, give each new candidate lifecycle Status `todo`. Use `decision-needed` only when a real choice is pending and include a reference to the governing Decision.
 - Never emit `active`, `proposed`, `partial`, or `bounded-*` as lifecycle Status values. If the repository has no discoverable governance contract, retain the standalone output and do not claim governed conformance.
 
+## Optional HTML projection
+
+The Markdown Dashboard is the primary output. When an interactive panorama is requested, save the Markdown output and run `scripts/render_dashboard.py` with the Markdown path and an HTML output path. For richer relationships, statuses, phase tags, and source metadata, provide the JSON shape described in [`references/html-renderer.md`](../../references/html-renderer.md). The generated single-file page includes overview, Big Idea, Stage Plan, and Session views, keyword/field filters, sorting, pagination, URL-hash state, and a detail drawer. It is a derived read model and must not be treated as canonical Dashboard truth or an approval receipt.
+
 ## References
 
 Read `references/core-concepts.md` when the task needs deeper BM Dashboard semantics, field meanings, or examples of Big Idea and Session distinctions.

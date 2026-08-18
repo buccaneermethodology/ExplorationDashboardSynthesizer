@@ -50,6 +50,10 @@ The default output is a standalone synthesis and does not require a Status colum
 
 If no project contract is discoverable, keep the standalone synthesis and state that governed conformance was not established. Do not depend on a private repository path or assume one universal contract location.
 
+## HTML projection
+
+The Markdown Dashboard is the primary output. For a human-readable interactive view, `scripts/render_dashboard.py` can render either the standard Markdown output or the richer JSON shape into a self-contained offline HTML file. The projection offers overview, Big Idea, Stage Plan, and Session views, keyword and field filters, sorting, pagination, URL-hash state, and a detail drawer. It is a derived read model: it does not replace the Dashboard/registry source or authorize status changes. See [HTML renderer reference](../references/html-renderer.md).
+
 ## 3. Dashboard Structure
 
 ### 3.1 Header

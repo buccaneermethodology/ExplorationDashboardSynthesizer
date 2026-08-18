@@ -66,5 +66,11 @@ Rules:
 - When that governed contract is available, default each new candidate Session to lifecycle Status `todo`. Use `decision-needed` only for a real pending choice and include a reference to the governing Decision.
 - Never emit `active`, `proposed`, `partial`, or `bounded-*` as lifecycle Status values. If no governed contract can be found, keep the standalone output and do not claim governed conformance.
 
+Optional presentation:
+
+- The Markdown Dashboard is the primary synthesis output.
+- When an interactive view is requested, save the Markdown output and render it with `scripts/render_dashboard.py`, or provide the documented JSON shape for richer relationships and source metadata.
+- The renderer creates a self-contained offline HTML projection with overview, Big Idea, Stage Plan, and Session views; keyword/field filters; sorting; pagination; URL-hash state; and a detail drawer. It does not replace the source Dashboard or change its status.
+
 Input Information:
 {{input_text}}
